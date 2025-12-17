@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://mu0.ai/sitemap.xml
