@@ -6,10 +6,6 @@ summary: "Reflections on a Zen koan and the 'bitter lesson' in AI – a call to 
 tags: ["AI", "Zen", "Research"]
 ---
 
-*This is placeholder content for the "Bitter Pill" essay.*
-
----
-
 The bitter pill to swallow is this: we must abandon our preconceived notions.
 
 In Zen, there is the concept of *Mu* (無) — often translated as "nothing" or "negation." When a student asked Master Zhaozhou whether a dog has Buddha-nature, he replied simply: "Mu."
@@ -28,6 +24,3 @@ To make progress, we must practice *Mu*.
 
 Let go of what you think you know.
 
----
-
-*Replace this placeholder with your actual essay content.*
