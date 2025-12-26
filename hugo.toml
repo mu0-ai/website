@@ -27,6 +27,11 @@ buildExpired = false
   hideSummary = false
   showtoc = false
 
+[params.label]
+  icon = "logo.png"
+  iconHeight = 40
+  text = ""
+
 [menu]
   [[menu.main]]
     identifier = "about"
