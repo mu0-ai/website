@@ -1,0 +1,31 @@
+/* Post list on the home page: tighter, more even spacing and a soft hover lift. */
+
+.post-entry {
+    margin-bottom: 16px;
+    padding: 20px 22px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.post-entry:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.post-entry:active {
+    transform: scale(0.99);
+}
+
+.post-entry .entry-header h2 {
+    font-size: 22px;
+    margin-bottom: 2px;
+}
+
+.post-entry .entry-content {
+    margin: 6px 0;
+    -webkit-line-clamp: 3;
+}
+
+.post-entry .entry-footer {
+    margin-top: 4px;
+}

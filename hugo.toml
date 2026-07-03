@@ -15,6 +15,7 @@ buildExpired = false
   defaultTheme = "light"
   disableThemeToggle = true
 
+  disableSpecial1stPost = true
   ShowReadingTime = true
   ShowShareButtons = false
   ShowPostNavLinks = false
