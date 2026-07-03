@@ -29,3 +29,20 @@
 .post-entry .entry-footer {
     margin-top: 4px;
 }
+
+/* Make code blocks render consistently even when the build emits a bare
+   <pre> without a nested <code> (older Hugo/chroma output), so ASCII
+   diagrams stay in a compact, boxed, readable size. */
+.post-content pre {
+    font-size: 14px;
+    line-height: 1.5;
+    background: var(--code-block-bg);
+    color: rgb(213, 213, 214);
+    border-radius: var(--radius);
+    padding: 10px;
+    overflow-x: auto;
+}
+
+.post-content pre code {
+    font-size: inherit;
+}
