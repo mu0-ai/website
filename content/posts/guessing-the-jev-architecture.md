@@ -73,8 +73,7 @@ H = (h_1,\dots,h_n), \qquad h_i \in \mathbb{R}^d.
 Every input token attends to both its left and its right context:
 
 \[
-\mathrm{Attention}(Q,K,V)
-=
+\mathrm{Attention}(Q,K,V) =
 \mathrm{softmax}\!\left(\frac{QK^\top}{\sqrt{d_k}}\right)V.
 \]
 
@@ -87,8 +86,7 @@ For efficiency, it almost certainly computes this state encoding **once per requ
 Each question-plus-option pair is encoded into a query representation:
 
 \[
-z_{j,k}
-=
+z_{j,k} =
 \mathrm{OptionEncoder}_\phi(q_j, c_{j,k})
 \in \mathbb{R}^d.
 \]
@@ -110,16 +108,14 @@ The important feature is that \(z_{j,k}\) is constructed from **user-supplied la
 Each candidate is then scored against the same encoded state:
 
 \[
-u_{j,k}
-=
+u_{j,k} =
 \mathrm{CrossAttention}(z_{j,k}, H).
 \]
 
 Expanded:
 
 \[
-\alpha_{j,k,i}
-=
+\alpha_{j,k,i} =
 \mathrm{softmax}_i
 \left(
 \frac{
@@ -131,8 +127,7 @@ Expanded:
 \]
 
 \[
-u_{j,k}
-=
+u_{j,k} =
 \sum_{i=1}^{n}
 \alpha_{j,k,i}\, W_V h_i.
 \]
@@ -142,8 +137,7 @@ Intuitively, the **billing** candidate attends heavily to “charged twice” an
 A learned scoring head converts that readout to a scalar:
 
 \[
-\ell_{j,k}
-=
+\ell_{j,k} =
 w^\top \sigma(W_u u_{j,k} + W_z z_{j,k}) + b.
 \]
 
@@ -162,8 +156,7 @@ That is the whole content of “parallel sampling.” It is not that the model r
 For a multiple-choice question:
 
 \[
-p(y_j = k \mid x,q_j,C_j)
-=
+p(y_j = k \mid x,q_j,C_j) =
 \frac{\exp(\ell_{j,k}/T_j)}
 {\sum_{k'=1}^{K_j}\exp(\ell_{j,k'}/T_j)}.
 \]
@@ -193,10 +186,8 @@ plus the full distribution, or at minimum its top probability.
 For a binary proposition — “Does this customer request a refund?” — a single logit through a sigmoid:
 
 \[
-p(y_j = 1 \mid x,q_j)
-=
-\sigma(\ell_j)
-=
+p(y_j = 1 \mid x,q_j) =
+\sigma(\ell_j) =
 \frac{1}{1+\exp(-\ell_j)}.
 \]
 
@@ -213,18 +204,15 @@ This also explains why a Noul has no separate confidence field, while a Choice d
 For an ordered \(R\)-level rubric, predict a distribution:
 
 \[
-p(y_j=r \mid x,q_j)
-=
+p(y_j=r \mid x,q_j) =
 \mathrm{softmax}(\ell_{j,0},\dots,\ell_{j,R})_r
 \]
 
 and return the expectation:
 
 \[
-\hat s_j
-=
-\mathbb{E}[y_j]
-=
+\hat s_j =
+\mathbb{E}[y_j] =
 \sum_{r=0}^{R} r\; p(y_j=r).
 \]
 
@@ -243,32 +231,28 @@ Raw softmax probabilities are generally overconfident. If calibration is a produ
 For a categorical answer with one-hot target \(y\), the usual proper scoring loss is cross-entropy:
 
 \[
-\mathcal{L}_{\mathrm{CE}}
-=
+\mathcal{L}_{\mathrm{CE}} =
 -\sum_k y_k \log p_k.
 \]
 
 A calibration-oriented objective could add a Brier term:
 
 \[
-\mathcal{L}_{\mathrm{Brier}}
-=
+\mathcal{L}_{\mathrm{Brier}} =
 \sum_k(p_k-y_k)^2
 \]
 
 and/or a learned post-hoc temperature:
 
 \[
-p_k
-=
+p_k =
 \mathrm{softmax}(\ell_k/T).
 \]
 
 So a plausible overall objective is
 
 \[
-\mathcal{L}
-=
+\mathcal{L} =
 \lambda_{\mathrm{task}}\mathcal{L}_{\mathrm{task}}
 +
 \lambda_{\mathrm{cal}}\mathcal{L}_{\mathrm{calibration}}
@@ -304,8 +288,7 @@ With \(\lambda > \gamma\), the expected reward of acting is \(p - \lambda(1-p)\)
 A normal LLM estimates
 
 \[
-p(w_1,\dots,w_m \mid x)
-=
+p(w_1,\dots,w_m \mid x) =
 \prod_{t=1}^{m}
 p(w_t \mid w_{<t},x).
 \]
